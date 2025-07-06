@@ -1,0 +1,47 @@
+<div class="container">
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+        <pre>Value : {{userForm.value| json}}</pre>
+        <pre>Valid : {{userForm.valid}}</pre>
+        <pre>InValid: {{userForm.invalid}}</pre>
+        <pre>touched : {{userForm.touched}}</pre>
+        <pre>untouched: {{userForm.untouched}}</pre>
+        <pre>submitted : {{userForm.submitted}}</pre>
+        <h2 class="text-center m-2">User Info</h2>
+    <div class="form-group">
+        <label>First Name</label>
+            <input type="text" class="form-control" placeholder="Enter First Name" #fname="ngModel" name="firstName" [(ngModel)]="userObject.firstName"  minlength="5" required>
+                 @if ((fname.touched || fname.dirty)) {
+        @if (fname.errors?.['required']) {
+          <small class="text-danger">First Name is required</small>
+        } @else if (fname.errors?.['minlength']) {
+          <small class="text-danger">Character must be at least 5</small>
+        }
+      }
+
+        </div>
+    <div class="form-group">
+        <label>Last Name</label>
+            <input type="text" class="form-control" placeholder="Enter Last Name" #lname="ngModel" name="lastName" [(ngModel)]="userObject.lastName" maxlength="10" required pattern="^[a-zA-Z]+$">
+ @if ((lname.touched || lname.dirty)) {
+        @if (lname.errors?.['required']) {
+          <small class="text-danger">Last Name is required</small>
+        } @else if (lname.errors?.['pattern']) {
+          <small class="text-danger">Character must be at least 5</small>
+        }
+      }    </div>
+    <div class="form-group">
+        <label>Email</label>
+            <input type="text" class="form-control" placeholder="Enter Email Address" name="email" [(ngModel)]="userObject.email" email required>
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+            <input type="text" class="form-control" placeholder="Enter Password" name="pass" [(ngModel)]="userObject.pass">
+    </div>
+    <div class="form-group">
+            <input type="checkbox" class="form-check-input" name="isCheck" [(ngModel)]="userObject.isCheck">
+            <label>Check me out</label>
+    </div>
+    <button class="btn btn-success" [disabled]="!userForm.valid">Submit</button>
+
+    </form>
+</div>

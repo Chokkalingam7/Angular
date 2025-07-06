@@ -1,0 +1,22 @@
+<div class="m-3">
+    <!-- @if(isEligible){
+    <ul>
+        <li>Id: {{dummyData.id}}</li>
+        <li>Name: {{dummyData.name}}</li>
+        <li>Username: {{dummyData.username}}</li>
+        <li>Email: {{dummyData.email}}</li>
+    </ul>
+    }
+    @else {
+       hello
+} -->
+    <h3>Interaction with API</h3>
+    <ul>
+        <li *ngFor="let data of apiData">
+            Id: {{data.id}}<br>
+            Name: {{data.name}}<br>
+            Username: {{data.username}}<br>
+            Email: {{data.email}}
+        </li>
+    </ul>
+</div>
